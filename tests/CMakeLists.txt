@@ -3,6 +3,16 @@ cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
 project(testing VERSION 0.1 DESCRIPTION "diferent tests for the library" LANGUAGES CXX)
 
 
-add_executable(test1 test1.cpp)
-add_test(NAME test1 COMMAND test1)
-target_link_libraries(test1 PRIVATE qbigint)
+foreach(app  test1)
+add_executable(${app} ${app}.cpp)
+target_link_libraries(${app} PRIVATE qbigint)
+add_test(NAME ${app} COMMAND ${app})
+
+if (WIN32 AND BUILD_SHARED_LIBS)
+    add_custom_command(
+        TARGET ${app} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_RUNTIME_DLLS:${app}> $<TARGET_FILE_DIR:${app}>
+        COMMAND_EXPAND_LISTS
+    )
+endif ()
+endforeach()

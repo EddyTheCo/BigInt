@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
 include(local_conf.cmake OPTIONAL)
-project(IOTA VERSION 0.1 DESCRIPTION "token amount  library " LANGUAGES CXX)
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+include(cmake/VersionFromGit.cmake)
+
+version_from_git(
+	LOG       OFF
+  TIMESTAMP "%Y%m%d%H%M%S"
+)
+
+project(QtbigInt VERSION ${VERSION} DESCRIPTION "Qt uint256 uint18 library " LANGUAGES CXX)
 
 
 set(default_build_type "Release")
@@ -20,7 +28,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_library(qbigint  qbigint.cpp include/qbigint.hpp include/arith_uint256.h src/arith_uint256.cpp)
 
 
-find_package(Qt6 REQUIRED COMPONENTS Core)
+include(cmake/FindQt.cmake)
+
 target_link_libraries(qbigint PUBLIC  Qt6::Core )
 
 target_include_directories(qbigint PUBLIC  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -43,8 +52,8 @@ configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
 	)
 write_basic_package_version_file(
 	"${CMAKE_CURRENT_BINARY_DIR}/qbigintConfigVersion.cmake"
-	VERSION "0.1.1.0"
-	COMPATIBILITY AnyNewerVersion
+	VERSION ${VERSION}
+	COMPATIBILITY SameMajorVersion
 	)
 install(FILES
 	${CMAKE_CURRENT_BINARY_DIR}/qbigintConfig.cmake
@@ -57,6 +66,11 @@ export(EXPORT qbigintTargets
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     include(CTest)
+    set(CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-v${SEMVER}-${CMAKE_SYSTEM_NAME}_${CMAKE_SYSTEM_VERSION}-${CMAKE_SYSTEM_PROCESSOR}-${CMAKE_CXX_COMPILER_ID}")
+    if(NOT BUILD_SHARED_LIBS)	    
+    set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_FILE_NAME}-static")
+    endif(NOT BUILD_SHARED_LIBS)		    
+    include(CPack)
 endif()
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND BUILD_TESTING)
     add_subdirectory(tests)
