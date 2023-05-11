@@ -25,10 +25,10 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 
+include(cmake/FindQt.cmake)
+
 add_library(qbigint  qbigint.cpp include/qbigint.hpp include/arith_uint256.h src/arith_uint256.cpp)
 
-
-include(cmake/FindQt.cmake)
 
 target_link_libraries(qbigint PUBLIC  Qt6::Core )
 
