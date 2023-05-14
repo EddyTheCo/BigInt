@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
 include(local_conf.cmake OPTIONAL)
-set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 include(cmake/VersionFromGit.cmake)
 
 version_from_git(
@@ -22,10 +21,13 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
-
-include(cmake/FindQt.cmake)
+find_package(Qt6 REQUIRED COMPONENTS Core)
+qt_standard_project_setup()
 
 add_library(qbigint  qbigint.cpp include/qbigint.hpp include/arith_uint256.h src/arith_uint256.cpp)
 
