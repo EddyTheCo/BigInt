@@ -66,7 +66,7 @@ include(CMakePackageConfigHelpers)
 # generate the config file that is includes the exports
 configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
 	"${CMAKE_CURRENT_BINARY_DIR}/qbigintConfig.cmake"
-	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/QtBigInt
+	INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/QtBigInt
 	NO_SET_AND_CHECK_MACRO
 	NO_CHECK_REQUIRED_COMPONENTS_MACRO
 	)
