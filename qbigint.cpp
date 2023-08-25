@@ -2,6 +2,8 @@
 #include<QByteArray>
 #include<QIODevice>
 
+
+namespace qiota{
 template<unsigned int BITS>
 QString qbase_uint<BITS>::toHex() const
 {
@@ -44,3 +46,5 @@ void qbase_uint<BITS>::fromHex(const QString& str)
 }
 template class qbase_uint<256>;
 template class qbase_uint<128>;
+
+};

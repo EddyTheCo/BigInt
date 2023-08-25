@@ -7,6 +7,8 @@
 
 
 #include<QIODevice>
+
+using namespace qiota;
 int main(int argc, char** argv)
 {
 
