@@ -1,11 +1,11 @@
-
-
-
 #pragma once
 
 #include"arith_uint256.h"
 #include<QString>
 #include <QDataStream>
+
+namespace qiota{
+
 template<unsigned int BITS>
 class qbase_uint: public base_uint<BITS>
 {
@@ -34,3 +34,4 @@ public:
 };
 using quint256=qbase_uint<256>;
 using quint128=qbase_uint<128>;
+};
