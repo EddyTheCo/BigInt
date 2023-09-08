@@ -47,26 +47,26 @@ endif(Qt6_FOUND)
 
 
 target_include_directories(qbigint PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-	"$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/QtBigInt>")
+	"$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/qbigint>")
 
 install(TARGETS qbigint 
 	EXPORT qbigintTargets 
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	)
 install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/
-	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/QtBigInt
+	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qbigint
 	)
 
 install(EXPORT qbigintTargets
 	FILE qbigintTargets.cmake
-	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/QtBigInt
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/qbigint
 	)
 
 include(CMakePackageConfigHelpers)
 # generate the config file that is includes the exports
 configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
 	"${CMAKE_CURRENT_BINARY_DIR}/qbigintConfig.cmake"
-	INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/QtBigInt
+	INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/qbigint
 	NO_SET_AND_CHECK_MACRO
 	NO_CHECK_REQUIRED_COMPONENTS_MACRO
 	)
@@ -78,13 +78,14 @@ write_basic_package_version_file(
 install(FILES
 	${CMAKE_CURRENT_BINARY_DIR}/qbigintConfig.cmake
 	${CMAKE_CURRENT_BINARY_DIR}/qbigintConfigVersion.cmake
-	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/QtBigInt
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/qbigint
 	)
 export(EXPORT qbigintTargets
 	FILE "${CMAKE_CURRENT_BINARY_DIR}/qbigintTargets.cmake"
 	)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+	set(CPACK_PACKAGE_CONTACT "estervtech")
 	include(CTest)
 	set(CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-v${SEMVER}-${CMAKE_SYSTEM_NAME}_${CMAKE_SYSTEM_VERSION}-${CMAKE_SYSTEM_PROCESSOR}-${CMAKE_CXX_COMPILER_ID}")
 	if(NOT BUILD_SHARED_LIBS)
