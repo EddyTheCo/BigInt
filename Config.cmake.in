@@ -1,4 +1,4 @@
 @PACKAGE_INIT@
 include(CMakeFindDependencyMacro)
 find_dependency(Qt6 REQUIRED COMPONENTS Core)
-include ( "${CMAKE_CURRENT_LIST_DIR}/qbigintTargets.cmake" )
+include ( "${CMAKE_CURRENT_LIST_DIR}/QtbigInti-config.cmake" )
