@@ -5,7 +5,7 @@ include(FetchContent)
 FetchContent_Declare(
 	ccommon
 	GIT_REPOSITORY https://github.com/EddyTheCo/Common.git
-	GIT_TAG v0.3.0
+	GIT_TAG v0.3.1
 	)
 FetchContent_MakeAvailable(ccommon)
 version_from_git(
@@ -42,6 +42,7 @@ if (Qt6_FOUND)
 		EXPORT ${PROJECT_NAME}-config
 		DESTINATION ${CMAKE_INSTALL_LIBDIR}
 		COMPONENT bigint
+		RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" COMPONENT QrDec
 		)
 	install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/
 		DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/Esterv
@@ -55,7 +56,7 @@ if (Qt6_FOUND)
 			include(CTest)
 			add_subdirectory(tests)
 		endif(BUILD_TESTING)
-	endif()
+	endif(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 endif(Qt6_FOUND)
 if(BUILD_DOCS)
 	build_docs()
