@@ -5,12 +5,12 @@ include(FetchContent)
 FetchContent_Declare(
   ccommon
   GIT_REPOSITORY https://github.com/EddyTheCo/Common.git
-  GIT_TAG v0.4.0)
+  GIT_TAG v0.4.1)
 FetchContent_MakeAvailable(ccommon)
 version_from_git(LOG OFF TIMESTAMP "%Y%m%d%H%M%S")
 
 project(
-  QtbigInt
+  EstervBigInt
   VERSION ${VERSION}
   DESCRIPTION "uint256 uint128 library "
   LANGUAGES CXX)
@@ -26,28 +26,28 @@ find_package(Qt6 COMPONENTS Core)
 if(Qt6_FOUND)
   qt_standard_project_setup()
 
-  add_library(qbigint qbigint.cpp include/qbigint.hpp include/arith_uint256.h
+  add_library(bigint src/bigint.cpp include/esterv/crypto/bigint.hpp include/esterv/crypto/arith_uint256.h
                       src/arith_uint256.cpp)
-  add_library(${PROJECT_NAME}::qbigint ALIAS qbigint)
-  set_target_properties(qbigint PROPERTIES VERSION ${VERSION} SOVERSION
+  add_library(${PROJECT_NAME}::bigint ALIAS bigint)
+  set_target_properties(bigint PROPERTIES VERSION ${VERSION} SOVERSION
                                                               ${VERSION_MAJOR})
 
-  target_link_libraries(qbigint PUBLIC Qt6::Core)
+  target_link_libraries(bigint PUBLIC Qt6::Core)
 
   target_include_directories(
     qbigint PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-                   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/Esterv/>")
+                   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/>")
 
   install(
-    TARGETS qbigint
+    TARGETS bigint
     EXPORT ${PROJECT_NAME}-config
     DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    COMPONENT bigint
-    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" COMPONENT bigint)
+    COMPONENT ${PROJECT_NAME}
+    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" COMPONENT ${PROJECT_NAME})
   install(
     DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/Esterv
-    COMPONENT ${PROJECT_NAME})
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    COMPONENT ${PROJECT_NAME}-dev)
 
   build_exports()
   if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)

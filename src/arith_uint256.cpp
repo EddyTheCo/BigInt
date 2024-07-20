@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2022 The Bitcoin Core developers
 
 // modified version of https://github.com/bitcoin/bitcoin/blob/master/src/arith_uint256.cpp
-#include <qbigint.hpp>
+#include "esterv/crypto/bigint.hpp"
 
 template <unsigned int BITS> base_uint<BITS> &base_uint<BITS>::operator<<=(unsigned int shift)
 {
