@@ -1,32 +1,16 @@
 # Esterv.Crypto.BigInt 
 
-
 [TOC]
 
 This repo implements a simple library for working with uint256, uint128 types and it is based 
 from [here](https://github.com/bitcoin/bitcoin/blob/master/src/arith_uint256.h).
 
-## Installing the library 
+## Configure, build, test, package ...
+ 
+The project uses [CMake presets](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html) as a way to share CMake configurations.
+Refer to [cmake](https://cmake.org/cmake/help/latest/manual/cmake.1.html), [ctest](https://cmake.org/cmake/help/latest/manual/ctest.1.html) and [cpack](https://cmake.org/cmake/help/latest/manual/cpack.1.html) documentation for more information on the use of presets.
 
-### From source code
-```
-git clone https://github.com/EddyTheCo/BigInt.git 
-
-mkdir build
-cd build
-qt-cmake -G Ninja -DCMAKE_INSTALL_PREFIX=installDir -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DBUILD_DOCS=OFF ../BigInt
-
-cmake --build . 
-
-cmake --install . 
-```
-where `installDir` is the installation path.
-One can choose to build or not the tests and the documentation with the `BUILD_TESTING` and `BUILD_DOCS` variables.
-
-### From GitHub releases
-Download the releases from this repo. 
-
-## Adding the libraries to your CMake project 
+## Using the targets in your CMake project 
 
 ```CMake
 include(FetchContent)
@@ -42,8 +26,7 @@ target_link_libraries(<target> <PRIVATE|PUBLIC|INTERFACE> EstervBigInt::bigint)
 
 You can read the [API reference](https://eddytheco.github.io/BigInt/) here, or generate it yourself like
 ```
-cmake -DBUILD_DOCS=ON ../
-cmake --build . --target doxygen_docs
+cmake --workflow --preset default-documentation
 ```
 
 ## Contributing

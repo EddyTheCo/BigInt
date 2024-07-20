@@ -35,7 +35,7 @@ if(Qt6_FOUND)
   target_link_libraries(bigint PUBLIC Qt6::Core)
 
   target_include_directories(
-    qbigint PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    bigint PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
                    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/>")
 
   install(
@@ -60,4 +60,4 @@ if(Qt6_FOUND)
 endif(Qt6_FOUND)
 if(BUILD_DOCS)
   build_docs()
-endif()
+endif(BUILD_DOCS)

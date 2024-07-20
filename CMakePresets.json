@@ -31,7 +31,8 @@
       "binaryDir": "${sourceDir}/build/debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-	"BUILD_TESTING": "ON"
+	"BUILD_TESTING": "ON",
+	"BUILD_DOCS":"ON"
       }
     }
   ],
@@ -47,6 +48,12 @@
     {
       "name": "default-develop",
       "configurePreset": "default-develop"
+    },
+    {
+      "name": "default-documentation",
+      "configurePreset": "default-develop",
+      "targets":"doxygen_docs"
+
     }
   ],
   "testPresets": [
@@ -85,6 +92,19 @@
       ]
     },
     {
+      "name": "default-documentation",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default-develop"
+        },
+        {
+          "type": "build",
+          "name": "default-documentation"
+        }
+      ]
+    },
+    {
       "name": "default-develop",
       "steps": [
         {
@@ -119,6 +139,12 @@
       "packageDirectory": "packages"
     },
     {
+      "name": "default-release-shared",
+      "description": "Release runtime components(shared libraries)",
+      "inherits":"default-release",
+      "configurePreset": "default-release-shared"
+    },
+    {
       "name": "default-develop",
       "description": "Release development components",
       "configurePreset": "default-develop",
@@ -129,8 +155,7 @@
       "variables": {
 	      "CPACK_COMPONENTS_ALL": "EstervBigInt;EstervBigInt-dev",
 	      "CPACK_COMPONENTS_GROUPING":"ALL_COMPONENTS_IN_ONE"
-      },
-      "packageDirectory": "packages-dev"
+      }
     }
   ]
 

@@ -1,4 +1,4 @@
-#include "qbigint.hpp"
+#include "esterv/crypto/bigint.hpp"
 
 #include <iostream>
 #undef NDEBUG
@@ -7,12 +7,12 @@
 
 #include <QIODevice>
 
-using namespace qiota;
+using namespace esterv::crypto;
 int main(int argc, char **argv)
 {
 
     // TEST 1
-    quint256 a(3512345678899666655);
+    uint256 a(3512345678899666655);
     qDebug() << a.toHex();
     assert(a.toHex() == "0x30be5bc927315edf");
 
@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     qDebug() << a.toHex();
     assert(a.toHex() == "0xe02d83fdec9550996247845");
 
-    quint256 c("0xe02d83fdec9550996247845");
+    uint256 c("0xe02d83fdec9550996247845");
     qDebug() << c.toHex();
     assert(c.toHex() == "0xe02d83fdec9550996247845");
 
