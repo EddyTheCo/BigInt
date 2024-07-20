@@ -1,6 +1,6 @@
 foreach(app test1)
   add_executable(${app} ${app}.cpp)
-  target_link_libraries(${app} PRIVATE qbigint)
+  target_link_libraries(${app} PRIVATE bigint)
   add_test(NAME ${app} COMMAND ${app})
 
   if(WIN32 AND BUILD_SHARED_LIBS)

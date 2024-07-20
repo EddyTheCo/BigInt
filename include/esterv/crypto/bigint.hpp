@@ -1,10 +1,10 @@
 #pragma once
 
-#include "arith_uint256.h"
+#include "esterv/crypto/arith_uint256.h"
 #include <QDataStream>
 #include <QString>
 
-namespace qiota
+namespace esterv::crypto
 {
 
 template <unsigned int BITS> class qbase_uint : public base_uint<BITS>
@@ -32,6 +32,6 @@ template <unsigned int BITS> class qbase_uint : public base_uint<BITS>
         return out;
     }
 };
-using quint256 = qbase_uint<256>;
-using quint128 = qbase_uint<128>;
+using uint256 = qbase_uint<256>;
+using uint128 = qbase_uint<128>;
 }; // namespace qiota

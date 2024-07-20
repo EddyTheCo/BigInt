@@ -1,8 +1,8 @@
-#include "qbigint.hpp"
+#include "esterv/crypto/bigint.hpp"
 #include <QByteArray>
 #include <QIODevice>
 
-namespace qiota
+namespace esterv::crypto
 {
 template <unsigned int BITS> QString qbase_uint<BITS>::toHex() const
 {
