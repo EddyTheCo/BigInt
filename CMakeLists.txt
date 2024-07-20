@@ -26,17 +26,18 @@ find_package(Qt6 COMPONENTS Core)
 if(Qt6_FOUND)
   qt_standard_project_setup()
 
-  add_library(bigint src/bigint.cpp include/esterv/crypto/bigint.hpp include/esterv/crypto/arith_uint256.h
-                      src/arith_uint256.cpp)
+  add_library(
+    bigint src/bigint.cpp include/esterv/crypto/bigint.hpp
+           include/esterv/crypto/arith_uint256.h src/arith_uint256.cpp)
   add_library(${PROJECT_NAME}::bigint ALIAS bigint)
   set_target_properties(bigint PROPERTIES VERSION ${VERSION} SOVERSION
-                                                              ${VERSION_MAJOR})
+                                                             ${VERSION_MAJOR})
 
   target_link_libraries(bigint PUBLIC Qt6::Core)
 
   target_include_directories(
     bigint PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-                   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/>")
+                  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/>")
 
   install(
     TARGETS bigint

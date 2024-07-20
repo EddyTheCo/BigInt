@@ -42,4 +42,4 @@ template <unsigned int BITS> void qbase_uint<BITS>::fromHex(const QString &str)
 template class qbase_uint<256>;
 template class qbase_uint<128>;
 
-}; // namespace qiota
+}; // namespace esterv::crypto
