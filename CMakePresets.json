@@ -8,8 +8,8 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/release",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "MinSizeRel",
-	"REPO_URL":"https://eddytheco.github.io/BigInt"
+        "CMAKE_BUILD_TYPE": "Release",
+	"REPO_URL":"https://eddytheco.github.io/Esterv.Crypto.BigInt"
       }
     },
     {

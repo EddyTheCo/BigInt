@@ -18,7 +18,7 @@ jobs:
     with:
       os: ${{ matrix.os }}
       qtVersion: '6.6.0'
-      cmakeArgs: "-DCPACK_PACKAGE_CONTACT=estervtech@gmail.com -DREPO_URL=https://eddytheco.github.io/QbigInt -DCPACK_PACKAGE_VENDOR=estervtech" 
+      cmakeArgs: "-DCPACK_PACKAGE_CONTACT=estervtech@gmail.com -DREPO_URL=https://eddytheco.github.io/Esterv.Crypto.BigInt/ -DCPACK_PACKAGE_VENDOR=estervtech" 
   
   build_doxygen:
     if: startsWith(github.ref, 'refs/tags/v')
