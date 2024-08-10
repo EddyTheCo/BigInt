@@ -16,15 +16,15 @@ Refer to [cmake](https://cmake.org/cmake/help/latest/manual/cmake.1.html), [ctes
 include(FetchContent)
 FetchContent_Declare(
 	EstervBigInt	
-	GIT_REPOSITORY https://github.com/EddyTheCo/BigInt.git
+	GIT_REPOSITORY https://github.com/EddyTheCo/Esterv.Crypto.BigInt.git
 	GIT_TAG vMAJOR.MINOR.PATCH 
 	FIND_PACKAGE_ARGS MAJOR.MINOR CONFIG  
 	)
 FetchContent_MakeAvailable(EstervBigInt)
-target_link_libraries(<target> <PRIVATE|PUBLIC|INTERFACE> EstervBigInt::bigint)
+target_link_libraries(<target> <PRIVATE|PUBLIC|INTERFACE> Esterv::bigint)
 ```
 
-You can read the [API reference](https://eddytheco.github.io/BigInt/) here, or generate it yourself like
+You can read the [API reference](https://eddytheco.github.io/Esterv.Crypto.BigInt/) here, or generate it yourself like
 ```
 cmake --workflow --preset default-documentation
 ```

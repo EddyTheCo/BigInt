@@ -19,24 +19,15 @@ jobs:
       - name: Install dependencies on ubuntu
         run: |
           sudo apt-get update
-          sudo apt-get install clang-format
+          sudo apt-get install clang-format jq
           pip install cmakelang
       
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v3
-        with:
-          aqtversion: '==3.1.*'
-          version: '6.6.0'
-          host: 'linux'
-          target: 'desktop'
-          arch: 'gcc_64'
-
       - name: Format code
         run: |
           rm aqtinstall.log
           find . -regex '.*\.\(cpp\|hpp\|cu\|cuh\|c\|h\)' -exec clang-format -style=file -i {} \;
-          find . -regex '.*\.\(qml\)' -exec  qmlformat  -i {} \;
           find . -regex '.*\.\(cmake\)' -exec  cmake-format -i {} \;
+          find . -regex '.*\.\(json\)' -exec bash -c "jq . {}  > {}.back; mv {}.back {} " \;
           find . -name  'CMakeLists.txt' -exec  cmake-format -i {} \;
 
       - name: Create Pull Request

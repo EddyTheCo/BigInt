@@ -28,7 +28,7 @@ if(Qt6_FOUND)
 
   add_library(bigint src/bigint.cpp include/esterv/crypto/bigint.hpp include/esterv/crypto/arith_uint256.h
                       src/arith_uint256.cpp)
-  add_library(${PROJECT_NAME}::bigint ALIAS bigint)
+	      add_library(Esterv::bigint ALIAS bigint)
   set_target_properties(bigint PROPERTIES VERSION ${VERSION} SOVERSION
                                                               ${VERSION_MAJOR})
 
